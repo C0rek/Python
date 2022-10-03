@@ -1,15 +1,16 @@
-
-# Se desea elaborar un programa que simule la atención de pacientes en un consultorio. Se debe crear una
-# lista de pacientes que esperan ser atendidos. Inicialmente la lista de espera está vacía y los pacientes se
-# atienden por orden de llegada. A medida que llegan los pacientes se agregan después del último, salvo
-# que la atención del nuevo paciente sea una urgencia, en este caso se lo agrega al comienzo de la lista.
-# Realice un menú que invoque a módulos para realizar lo siguiente:
-# a) Ingresar un nuevo paciente a la lista de espera.
-# b) Indicar cuál es el paciente a ser atendido, atenderlo y eliminarlo de la lista.
-# c) Registrar un paciente con urgencia, arreglar la lista y además, guardarlo en otra lista
-# d) Determinar cuántos pacientes esperan para ser atendidos antes que un paciente X.
-# e) Mostrar cuántos pacientes se atendieron desde el comienzo, y cuántos faltan atender
-# f) Mostrar la lista de pacientes que se atendieron con urgencia.
+#Consigna
+"""
+    Se desea elaborar un programa que simule la atención de pacientes en un consultorio. Se debe crear una lista de pacientes que esperan ser atendidos. 
+Inicialmente la lista de espera está vacía y los pacientes se atienden por orden de llegada. A medida que llegan los pacientes se agregan después del último, salvo
+que la atención del nuevo paciente sea una urgencia, en este caso se lo agrega al comienzo de la lista. 
+Realice un menú que invoque a módulos para realizar lo siguiente:
+a) Ingresar un nuevo paciente a la lista de espera.
+b) Indicar cuál es el paciente a ser atendido, atenderlo y eliminarlo de la lista.
+c) Registrar un paciente con urgencia, arreglar la lista y además, guardarlo en otra lista
+d) Determinar cuántos pacientes esperan para ser atendidos antes que un paciente X.
+e) Mostrar cuántos pacientes se atendieron desde el comienzo, y cuántos faltan atender
+f) Mostrar la lista de pacientes que se atendieron con urgencia.
+"""
 
 def cargar_paciente():
     print("Ingrese el nombre del paciente a ingresar")
@@ -28,9 +29,6 @@ def paciente_urgencias():
     pacientes.insert(0,nombre)
     espera=pacientes        #lo guardo en otra lista
     print(pacientes)
-
-
-
 
 
 def menu():
