@@ -1,0 +1,99 @@
+'''
+    Dada un archivo de texto, crear un menú que llame a procedimientos o funciones para realizar lo siguiente:
+
+a) Mostrar la cantidad de vocales de cada línea del archivo de texto. (incluir las vocales acentuadas y las que están en mayúsculas)
+b) Mostrar la línea con más vocales.
+c) Almacenar, en otro archivo, las líneas que contienen la palabra “Examen” o “examen”, indicando la/s línea/s donde se encuentra. 
+
+Guardar el nuevo archivo con el nombre “examen.txt”
+'''
+
+def linea_vocales(X):
+    C=0
+    linea_mas_vocales=0                     
+    for i in range(len(texto)):
+        for j in texto[i]:
+            if (j=="a" or j=="e" or j=="i" or j=="o" or j=="u"
+            or j=="A" or j=="E" or j=="I" or j=="O" or j=="U"):
+                C=C+1
+            if j=="\n":
+                print("Vocales de linea: ",C)
+                if linea_mas_vocales<C:
+                    linea_mas_vocales=C
+                    X=texto[i]
+                C=0
+                    
+    print(linea_mas_vocales)
+    print(X)
+
+def mostrar_linea(X):
+    C=0
+    linea_mas_vocales=0                     
+    for i in range(len(texto)):
+        for j in texto[i]:
+            if (j=="a" or j=="e" or j=="i" or j=="o" or j=="u"
+            or j=="A" or j=="E" or j=="I" or j=="O" or j=="U"):
+                C=C+1
+            if j=="\n":
+                if linea_mas_vocales<C:
+                    linea_mas_vocales=C
+                    X=texto[i]
+                C=0
+                    
+    print(linea_mas_vocales)
+    print(X)
+              
+
+def linea_examen(X):
+    C=0
+    L=[]*len(texto)
+    for i in range(len(texto)):
+        E=texto[i].find("Examen")
+        e=texto[i].find("examen")
+        if (E!=-1 or e!=-1):
+            C=C+1
+            L.append("Linea "+str(i+1)+"-"+texto[i])
+    print("Guardado con exito")
+    return L
+     
+
+
+def menu():
+    print("(1) - Mostrar vocales ")
+    print("(2) - Mostrar linea con mas vocales")
+    print("(3) - Almacenar las lineas que contengan la palabra Examen o examen")
+    print("(4) - Salir")
+
+#main
+
+archivo=open("archivo.txt","r")
+texto=archivo.read()
+print("")
+print(texto)
+print("")
+archivo.close()
+while True:
+    menu()
+    a =int (input("Ingrese una opcion:"))
+    while( a>0 and a<5 ):
+        if a == 1 :
+            archivo=open("archivo.txt","r")
+            texto=archivo.read()
+            linea_vocales(texto)
+            break
+        if a == 2 :
+            archivo=open("archivo.txt","r")
+            texto=archivo.readlines()
+            mostrar_linea(texto)
+            break
+        if a == 3 :
+            archivo=open("archivo.txt","r")
+            texto=archivo.readlines()
+            lista=linea_examen(texto)
+            archivo=open("archivo2.txt","w")
+            archivo.writelines(lista)
+            break
+        if a == 4 : 
+            quit()   
+    else:
+        print("Ingrese una opcion correcta")
