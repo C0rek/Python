@@ -1,0 +1,203 @@
+"""
+Consgina:
+    En un archivo de texto se mantienen los datos de las facturaciones realizadas en una empresa. 
+Los datos, que se mantienen en el archivo facturas.txt, están separados por comas con el 
+formato fecha, tipo de factura(A/B), número de factura, nombre del cliente y monto. Escriba un 
+programa con un menú que tenga al menos las siguientes operaciones:
+
+a. Registrar nuevas facturas en el archivo (sin perder las cargadas y conservando el formato).
+b. Dado un cliente, obtener la cantidad de compras que realizó y el monto total de las compras.
+c. Obtener el monto total de facturas agrupadas por tipo en un mes dado.
+d. Listar las compras realizadas durante un mes determinado.
+e. Listar los clientes ordenados por montos facturados (sin distinguir tipo de factura)
+"""
+# ESTE ARCHIVO Y Facturas.txt DEBEN ESTAR EN LA MISMA CARPETA para mayor facilidad. ESTE PROGRAMA FUNCIONA CON ESE ACTIVo .TXT
+
+#A
+def r_facturas(archivo):
+    N= int(input("Ingrese cantidad de facturas a registrar:"))
+    if  N > 0:
+        for i in range(N):
+            fecha=input("Ingrese una fecha: (dd/mm/aaaa)")
+            tipo_f=input("Ingrese tipo de factura (A o B):")         #tipo_f = tipo factura
+            if (tipo_f=="a" or tipo_f=="b" or tipo_f=="A" or tipo_f=="B"):
+                num_fac=input("Ingrese numero de factura:")               #num_fac = numero de factura
+                nombre=input("Ingrese el nombre del cliente:")
+                monto=input("Ingrese monto:")
+                dato=(fecha+","+tipo_f+","+num_fac+","+nombre+","+monto)
+                print(dato)
+                archivo.write(dato)         #agrego el dato al archivo
+                return(menu)
+            else:
+                print("Dato invalido\n")
+    else:
+        print("Dato invalido\n")
+        quit()          #cierro el programa
+
+
+#B
+def cliente_m_c(lista):          #cliente monto y compras
+    cliente=input("Ingrese el apellido del cliente: ")
+    aux=0
+    cant=0
+    for i in range (len(lista)):            #len=devuelve numero de elementos de una lista
+        B=lista[i].find(cliente)
+        if B!=-1:
+            B=lista[i].rfind(",")           
+            aux=aux+int(lista[i][B+1:len(lista[i])])
+            cant=cant+1
+    print("El cliente ",cliente," realizo un total de ",cant," compras")
+
+
+#C
+def monto_total(lista):
+    sumA=0
+    sumB=0
+    fecha=input("Ingrese el mes a buscar (Nombre): ")
+    fecha2=fecha
+    fecha=mes(fecha)
+    for i in range(len(lista)):
+        linea=lista[i][lista[i].find("/")+1:5]
+        R=linea.find(fecha)
+        if R!=-1:
+            linea=lista[i]
+            for i in range (2):
+                coma=linea.find(",")
+                linea=linea[coma+1:len(linea)]
+            A=linea.find("A")
+            if A!=-1:
+                coma=linea.rfind(",")
+                a=int(linea[coma+1:len(linea)])
+                sumA=sumA+a
+            else:
+                coma=linea.rfind(",")
+                b=int(linea[coma+1:len(linea)])
+                sumB=sumB+b
+    print("Para el mes de ",fecha2," los montos fueron:\nFactura A: $",sumA,"\nFactura B: $",sumB)
+
+
+#D
+def compras_mes(lista):
+    fecha=input("Ingrese el mes a buscar (Nombre): ")
+    fecha2=fecha
+    fecha=mes(fecha)
+    print("Las lista de compras realizadas en el mes de ",fecha2," fueron:")
+    for i in range(len(lista)):
+        linea=lista[i][lista[i].find("/")+1:5]
+        R=linea.find(fecha)
+        if R!=-1:
+            print(lista[i])
+
+
+#E
+def listar_clientes(lista):
+    nom=[""]*len(lista)              # guardo espacio
+    for i in range(len(lista)):
+        nombre=lista[i]
+        for j in range (3):          #rango 3 debido a que a partir de la 3er coma, se encuentra el nombre
+            coma=nombre.find(",")       
+            nombre=nombre[coma+1:len(nombre)]   #cambio nombre por lo que sigue despues de la primer coma
+        coma=nombre.find(",")                   #busco ultima coma
+        nombre=nombre[0:nombre.find(",")]   #cambio nuevamente hasta la ultima coma
+        nom[i]=nombre           #cargo nombre a mi espacio guardado
+    nom=list(set(nom))          #nom sera una lista solo con nombres y pongo set para no repetirlos
+    for i in range (len(lista)):
+        monto=0
+        for j in range (len(lista)):
+            R=lista[j].find(nom[i])
+            if R!=-1:
+                monto=monto+int(lista[j][lista[j].rfind(",")+1:len(lista[j])])
+        print(nom[i],monto)
+
+
+def mes(fecha):
+    if fecha=="enero" or fecha=="Enero":
+        fecha= "01"
+        return fecha
+    if fecha=="febrero" or fecha=="Febrero":
+        fecha= "02"
+        return fecha
+    if fecha=="marzo" or fecha=="Marzo":
+        fecha= "03"
+        return fecha
+    if fecha=="abril" or fecha=="Abril":
+        fecha= "04"
+        return fecha
+    if fecha=="mayo" or fecha=="Mayo":
+        fecha= "05"
+        return fecha
+    if fecha=="junio" or fecha=="Junio":
+        fecha= "06"
+        return fecha
+    if fecha=="julio" or fecha=="Julio":
+        fecha= "07"
+        return fecha
+    if fecha=="agosto" or fecha=="agosto":
+        fecha= "08"
+        return fecha
+    if fecha=="septiembre" or fecha=="Septiembre":
+        fecha= "09"
+        return fecha
+    if fecha=="octubre" or fecha=="Octubre":
+        fecha= "10"
+        return fecha
+    if fecha=="nomviembre" or fecha=="Nomviembre":
+        fecha= "11"
+        return fecha
+    if fecha=="diciembre" or fecha=="Diciembre":
+        fecha= "12"
+        return fecha
+
+
+
+
+def menu():
+    print("(1) - Registrar nuevas facturas")
+    print("(2) - Obtener cantidad y monto total de compras de un cliente")
+    print("(3) - Monto total de facturas dado un mes ")
+    print("(4) - Listar compras durante un mes determinado")
+    print("(5) - Listar clientes por montos facturados")
+
+
+
+
+#main
+archivo = open("Facturas.txt", "r")    #abro el archivo
+texto = archivo.read()
+print(texto)            #muestra la lista
+archivo.close()
+while True:
+    menu()
+    a =int (input("Ingrese una opcion:"))      #variable a es de answer("respuesta")
+    while( a>0 and a<6):
+
+        if a == 1 :
+            archivo=open("Facturas.txt","a")            # "a es para manexar mientras que "w" es para reemplazar
+            r_facturas(archivo)
+            archivo.close()
+
+        if a == 2 :
+            archivo=open("Facturas.txt","r")
+            lista=archivo.readlines()
+            archivo.close()
+            cliente_m_c(lista)
+
+        if a == 3 :
+            archivo=open("Facturas.txt","r")
+            lista=archivo.readlines()
+            archivo.close()
+            monto_total(lista)
+
+        if a == 4 :
+            archivo=open("Facturas.txt","r")
+            lista=archivo.readlines()
+            archivo.close()
+            compras_mes(lista)
+
+        if a == 5 :
+            archivo=open("Facturas.txt","r")
+            lista=archivo.readlines()
+            archivo.close()
+            listar_clientes(lista)
+    else:
+        print("Ingrese un opcion correcta")
