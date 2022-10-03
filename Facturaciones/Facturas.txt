@@ -1,0 +1,13 @@
+24/02/2016, B, 2564, Roque Tulio,  1500
+26/02/2016, B, 2565, Roque Tulio,3100
+27/02/2016, B, 2566, Javier Pintos, 3400
+27/02/2016,  A, 345, Carlos Alvarez,12000
+28/02/2016, A, 346, Carlos Alvarez, 2000
+02/03/2016, B, 2567, Amalia Cresenti, 300
+03/03/2016, A, 347, Carlos Alvarez, 5600
+03/03/2016, B, 2579, Amalia Cresenti,  1300
+05/03/2016,  B, 2580, Ana Mayorino, 590
+05/03/2016, B, 2581,Alejandro Meyer, 5100
+05/03/2016, A, 348, Mario Arguello, 2100
+06/03/2016, A, 350, Carlos Alvarez, 290
+07/03/2016, B, 2582, Gastón Lames, 1650
