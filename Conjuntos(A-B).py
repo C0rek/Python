@@ -1,5 +1,4 @@
-#   Creado por ** Tomas Rodriguez Zoni **
-#   Materia: Fundamentos de la Informatica
+#   Creado por ** C0rek **
 #   2021
 
 
