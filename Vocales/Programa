@@ -5,7 +5,7 @@ a) Mostrar la cantidad de vocales de cada línea del archivo de texto. (incluir 
 b) Mostrar la línea con más vocales.
 c) Almacenar, en otro archivo, las líneas que contienen la palabra “Examen” o “examen”, indicando la/s línea/s donde se encuentra. 
 
-Guardar el nuevo archivo con el nombre “examen.txt”
+Guardar el nuevo archivo con el nombre “examen.txt” #creo qe lo llame archivo2
 '''
 
 def linea_vocales(X):
