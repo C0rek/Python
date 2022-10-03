@@ -1,0 +1,4 @@
+Linea 1-El dia 04 de Abril se tomara el examen de Lenguajes I
+Linea 3-El tiempo del examen  es de 2 horas y 30 minutos.
+Linea 4-El Examen se va a desarrollar en la plataforma.
+Linea 6-Suerte para el Examen!
