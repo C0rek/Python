@@ -1,0 +1,142 @@
+#Enunciado
+'''
+Se debe manejar la agenda de una persona. Para ello se tiene un archivo  (con el nombre agenda.txt) 
+con la siguiente estructura:
+Nombre: string(20)
+Edad: string(2)
+# Sexo: string(1)
+Se pide crear un menú que invoque módulos a fin de:
+a) Acceder a la agenda. Para ello el usuario debe ingresar una contraseña (ubicada en el código del programa como una constante). Después de 3 intentos se bloquea el ingreso y se sale del programa.
+b) Añadir una nueva persona. Verificar que no exista otra con el mismo nombre.
+c) Buscar una persona y mostrar sus datos. En el caso de no encontrarla debe mostrar un mensaje.
+d) Borrar un usuario de la agenda.
+
+ESTE ARCHIVO FUNCIONA CON AGENDA.txt
+'''
+#defino contraseña (Ejercicio a)
+def password():
+    contador=1
+    contraseña="1"
+    while contador <= 3:
+        print("Ingrese la contraseña")
+        passw= input("> ") 
+        if passw == contraseña:
+            print("Exito")
+            contador = 4
+            print(texto)
+        else:
+            print("Contraseña incorrecta")
+            contador= contador+1    
+
+#defino añadir nueva persona (Ejercicio b)
+def nueva_persona():
+    print("Ingrese el nombre de la persona a añadir (20 caracteres)")
+    nombre=input("> ")
+    a=len(nombre)
+    if a>21:
+        print("Demasiados caracteres")
+    else:
+        B=0
+        for i in range(len(texto)):
+            R=texto[i][0:20].find(nombre)
+            if R!=-1:
+                print("Persona ya agendada")
+                B=1
+            if B!=1:
+                print("Ingrese la edad de la persona")
+                edad=int(input("> "))
+                if edad>0 or edad<100:
+                    print("Ingrese su sexo: Masculino(M) o Femenino(F)")
+                    sexo=input("> ")
+                    if sexo=="M" or sexo=="F":
+                        texto.append(nombre)
+                        aux=20-a
+                        texto.append(" " * aux)
+                        texto.append(str(edad))
+                        texto.append(sexo)
+                        texto.append("\n")
+                        print("Agregado con exito")
+                    else:
+                        print("Ingrese un sexo valido")
+                else:
+                    print("Ingrese una edad verdadera")
+                return texto
+
+
+#defino buscar a una persona y mostrar sus datos (Ejercicio c)
+def buscar_persona():
+    print("Ingrese el nombre y apellido de la persona")
+    nombre=input("> ")
+    B=0
+    for i in range(len(texto)):
+        R=texto[i][0:20].find(nombre)
+        if R!=-1:
+            print(texto[i])
+            B=1
+    if B==0:
+        print("La persona no esta agendada")
+
+
+#defino borrar un usuario de la agenda (Ejercicio d)
+def borrar():
+    print("Ingrese nombre y apellido de la persona a eliminar")
+    nombre=input("> ")
+    B=0
+    for i in range(len(texto)):
+        R=texto[i][0:20].find(nombre)
+        if R!=-1:
+            print("Se ha eliminado a:",texto[i])
+            x=texto[i]
+            texto.pop(i)
+            return texto
+
+def menu():
+    print("(1) - Acceder a agenda")
+    print("(2) - Añadir una nueva persona")
+    print("(3) - Buscar una persona")
+    print("(4) - Borrar un usuario de la agenda")
+    print("(5) - Salir")
+
+
+#main
+
+while True:
+    menu()
+    a =int (input("Ingrese una opcion:"))
+    while( a>0 and a<6 ):
+        if a == 1 :
+            archivo=open("agenda.txt","r")
+            texto=archivo.read()
+            password()
+            archivo.close()
+            break
+        if a == 2 :
+            archivo=open("agenda.txt","r")
+            texto=archivo.readlines()
+            print(texto)
+            nueva_persona()
+            archivo=open("agenda.txt","w")
+            print(texto)
+            archivo.writelines(texto)
+            archivo.close()
+            break
+        if a == 3 :
+            archivo=open("agenda.txt","r")
+            texto=archivo.readlines()           
+            buscar_persona()
+            archivo.close()
+            break
+        if a == 4 :
+            archivo=open("agenda.txt","r")
+            texto=archivo.readlines()
+            print(texto)
+            borrar()
+            archivo=open("agenda.txt","w")
+            print(texto)
+            archivo.writelines(texto)
+            archivo.close()
+            break
+        if a == 5 :
+            quit()   
+    else:
+        print("Ingrese una opcion correcta")
