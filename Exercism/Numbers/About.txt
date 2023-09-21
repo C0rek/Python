@@ -1,0 +1,2 @@
+Lesson: Numbers
+This folder is proof of my work studying Python at https://exercism.org/
